@@ -1,6 +1,7 @@
 package me.sml.demo.domain.team;
 
 import me.sml.demo.domain.member.Member;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -47,6 +48,11 @@ public class TeamServiceTest {
         teamRepository.saveAll(teams);
     }
 
+//    @After
+//    public void cleanUp(){
+//        teamRepository.deleteAll();
+//    }
+
     @Test
     public void N1_문제발생() throws Exception {
         //given
@@ -63,6 +69,16 @@ public class TeamServiceTest {
 
         //when
         List<String> allMemberName = teamService.findAllMemberNameJoinFetch();
+
+        //then
+        assertThat(allMemberName.size()).isEqualTo(10);
+    }
+
+    @Test
+    public void Querydsl_JOIN_FETCH로_인해_N1문제_발생하지않음(){
+
+        //when
+        List<String> allMemberName = teamService.findAllMemberNameJoinFetchQuerydsl();
 
         //then
         assertThat(allMemberName.size()).isEqualTo(10);
