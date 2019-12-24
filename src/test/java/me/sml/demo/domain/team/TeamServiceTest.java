@@ -58,4 +58,14 @@ public class TeamServiceTest {
         assertThat(allMemberName.size()).isEqualTo(10);
     }
 
+    @Test
+    public void JOIN_FETCH로_인해_N1문제_발생하지않음(){
+
+        //when
+        List<String> allMemberName = teamService.findAllMemberNameJoinFetch();
+
+        //then
+        assertThat(allMemberName.size()).isEqualTo(10);
+    }
+
 }

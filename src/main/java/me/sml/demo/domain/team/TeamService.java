@@ -27,4 +27,11 @@ public class TeamService {
                 .collect(Collectors.toList());
     }
 
+    public List<String> findAllMemberNameJoinFetch(){
+        return teamRepository.findAllJoinFetch()
+                .stream()
+                .map(team -> team.getMembers().get(0).getName())
+                .collect(Collectors.toList());
+    }
+
 }
