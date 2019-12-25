@@ -21,4 +21,11 @@ public class TeamRepositoryImpl implements TeamRepositoryCustom {
                 .fetchJoin()
                 .fetch();
     }
+
+    @Override
+    public List<Team> findAllEntityGraphQuerydsl() {
+        return queryFactory.selectFrom(team)
+                .fetch();
+    }
+
 }

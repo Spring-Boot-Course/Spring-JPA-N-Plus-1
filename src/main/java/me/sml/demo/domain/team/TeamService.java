@@ -37,4 +37,20 @@ public class TeamService {
                 .collect(Collectors.toList());
     }
 
+    public List<String> findAllMemberNameEntityGraph(){
+        return teamRepository.findAllEntityGraph()
+                .stream()
+                .map(team -> team.getMembers().get(0).getName())
+                .collect(Collectors.toList());
+    }
+
+    public List<String> findAllMemberNameEntityGraphQuerydsl(){
+        return teamRepository.findAllEntityGraphQuerydsl()
+                .stream()
+                .map(team -> team.getMembers().get(0).getName())
+                .collect(Collectors.toList());
+    }
+
+
+
 }

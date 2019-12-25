@@ -84,4 +84,26 @@ public class TeamServiceTest {
         assertThat(allMemberName.size()).isEqualTo(10);
     }
 
+    @Test
+    public void Entity_Graph로_인해_N1문제_발생하지않음() throws Exception{
+        //given
+
+        //when
+        List<String> allMemberName = teamService.findAllMemberNameEntityGraph();
+
+        //then
+        assertThat(allMemberName.size()).isEqualTo(10);
+    }
+
+    @Test
+    public void Entity_Graph_Querydsl로_인해_N1문제_발생하지않음() throws Exception{
+        //given
+
+        //when
+        List<String> allMemberName = teamService.findAllMemberNameEntityGraphQuerydsl();
+
+        //then
+        assertThat(allMemberName.size()).isEqualTo(10);
+    }
+
 }
