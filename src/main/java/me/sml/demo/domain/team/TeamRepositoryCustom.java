@@ -3,10 +3,11 @@ package me.sml.demo.domain.team;
 import org.springframework.data.jpa.repository.EntityGraph;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TeamRepositoryCustom {
-    List<Team> findAllJoinFetchQuerydsl();
+    Set<Team> findAllJoinFetchQuerydsl();
 
     @EntityGraph(attributePaths = "members")
-    List<Team> findAllEntityGraphQuerydsl();
+    Set<Team> findAllEntityGraphQuerydsl();
 }

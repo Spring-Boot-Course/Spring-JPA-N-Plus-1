@@ -26,15 +26,18 @@ public class TeamServiceTest {
     @Autowired
     private TeamRepository teamRepository;
 
-
     @Before
     public void setup() {
 
         List<Team> teams = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             Team team = Team.builder()
                     .name("상민팀" + i)
+                    .build();
+
+            Team team2 = Team.builder()
+                    .name("창민팀" + i)
                     .build();
 
             team.addMember(
@@ -43,15 +46,35 @@ public class TeamServiceTest {
                             .build()
             );
 
+            team.addMember(
+                    Member.builder()
+                            .name("이창민" + i)
+                            .build()
+            );
+
+
+            team2.addMember(
+                    Member.builder()
+                            .name("이상민" + i)
+                            .build()
+            );
+
+            team2.addMember(
+                    Member.builder()
+                            .name("이창민" + i)
+                            .build()
+            );
+
             teams.add(team);
+            teams.add(team2);
         }
         teamRepository.saveAll(teams);
     }
 
-//    @After
-//    public void cleanUp(){
-//        teamRepository.deleteAll();
-//    }
+    @After
+    public void cleanUp(){
+        teamRepository.deleteAll();
+    }
 
     @Test
     public void N1_문제발생() throws Exception {
@@ -61,7 +84,7 @@ public class TeamServiceTest {
         List<String> allMemberName = teamService.findAllMemberName();
 
         //then
-        assertThat(allMemberName.size()).isEqualTo(10);
+        assertThat(allMemberName.size()).isEqualTo(2);
     }
 
     @Test
@@ -71,7 +94,7 @@ public class TeamServiceTest {
         List<String> allMemberName = teamService.findAllMemberNameJoinFetch();
 
         //then
-        assertThat(allMemberName.size()).isEqualTo(10);
+        assertThat(allMemberName.size()).isEqualTo(2);
     }
 
     @Test
@@ -81,7 +104,7 @@ public class TeamServiceTest {
         List<String> allMemberName = teamService.findAllMemberNameJoinFetchQuerydsl();
 
         //then
-        assertThat(allMemberName.size()).isEqualTo(10);
+        assertThat(allMemberName.size()).isEqualTo(2);
     }
 
     @Test
@@ -92,7 +115,7 @@ public class TeamServiceTest {
         List<String> allMemberName = teamService.findAllMemberNameEntityGraph();
 
         //then
-        assertThat(allMemberName.size()).isEqualTo(10);
+        assertThat(allMemberName.size()).isEqualTo(2);
     }
 
     @Test
@@ -103,7 +126,7 @@ public class TeamServiceTest {
         List<String> allMemberName = teamService.findAllMemberNameEntityGraphQuerydsl();
 
         //then
-        assertThat(allMemberName.size()).isEqualTo(10);
+        assertThat(allMemberName.size()).isEqualTo(2);
     }
 
 }

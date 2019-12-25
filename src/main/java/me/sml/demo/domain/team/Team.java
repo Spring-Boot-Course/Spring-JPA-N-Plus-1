@@ -24,12 +24,12 @@ public class Team {
     private Long id;
 
     @OneToMany(mappedBy = "team", cascade = CascadeType.ALL)
-    private List<Member> members = new ArrayList<>();
+    private Set<Member> members = new LinkedHashSet<>();
 
     private String name;
 
     @Builder
-    public Team(List<Member> members, String name) {
+    public Team(Set<Member> members, String name) {
         this.name = name;
         if(members != null){
             this.members = members;

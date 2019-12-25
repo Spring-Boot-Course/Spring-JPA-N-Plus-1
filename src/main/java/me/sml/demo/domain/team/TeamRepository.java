@@ -5,13 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TeamRepository extends JpaRepository<Team, Long>, TeamRepositoryCustom {
 
     @Query("SELECT t FROM Team t JOIN FETCH t.members")
-    List<Team> findAllJoinFetch();
+    Set<Team> findAllJoinFetch();
 
     @EntityGraph(attributePaths = "members")
     @Query("select t from Team t")
-    List<Team> findAllEntityGraph();
+    Set<Team> findAllEntityGraph();
 }
