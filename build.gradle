@@ -19,12 +19,12 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version '2.1.11.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
-    id 'net.saliman.cobertura' version '2.3.1'
-    id 'com.github.kt3k.coveralls' version '2.8.2'
     id 'java'
 }
 
 apply plugin: "com.ewerk.gradle.plugins.querydsl"
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'jacoco'
 
 group = 'me.sml'
 version = '0.0.1-SNAPSHOT'
@@ -35,6 +35,14 @@ configurations {
         extendsFrom annotationProcessor
     }
 }
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
+    }
+}
+
 
 repositories {
     mavenCentral()
@@ -74,5 +82,3 @@ compileQuerydsl{
 configurations {
     querydsl.extendsFrom compileClasspath
 }
-
-cobertura.coverageFormats = ['html', 'xml']
