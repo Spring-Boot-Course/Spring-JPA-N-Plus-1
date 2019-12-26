@@ -1,4 +1,6 @@
 # Spring JPA N+1
+[![Build Status](https://travis-ci.com/Spring-Boot-Course/Spring-JPA-N-Plus-1.svg?branch=master)](https://travis-ci.com/Spring-Boot-Course/Spring-JPA-N-Plus-1)
+[![Coverage Status](https://coveralls.io/repos/github/Spring-Boot-Course/Spring-JPA-N-Plus-1/badge.svg?branch=master)](https://coveralls.io/github/Spring-Boot-Course/Spring-JPA-N-Plus-1?branch=master)
 
 ## N+1 문제 발생
 FetchType.LAZY로 설정이 되어있어도, N+1이 발생할 수 있다.
