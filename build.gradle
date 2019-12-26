@@ -11,6 +11,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "io.spring.gradle:dependency-management-plugin:1.0.7.RELEASE"
         classpath("gradle.plugin.com.ewerk.gradle.plugins:querydsl-plugin:${querydslPluginVersion}")
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
     }
 }
 
@@ -18,6 +19,8 @@ buildscript {
 plugins {
     id 'org.springframework.boot' version '2.1.11.RELEASE'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'net.saliman.cobertura' version '2.3.1'
+    id 'com.github.kt3k.coveralls' version '2.8.2'
     id 'java'
 }
 
@@ -71,3 +74,5 @@ compileQuerydsl{
 configurations {
     querydsl.extendsFrom compileClasspath
 }
+
+cobertura.coverageFormats = ['html', 'xml']
